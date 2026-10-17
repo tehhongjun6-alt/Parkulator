@@ -27,9 +27,16 @@ export default function App() {
 
   async function signIn() {
     setAuthError('')
+
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
+
+      // Return to the website where sign-in started
+      options: {
+        redirectTo: window.location.origin,
+      },
     })
+
     if (error) setAuthError(error.message)
   }
 
