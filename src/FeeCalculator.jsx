@@ -9,6 +9,11 @@ export default function FeeCalculator() {
 
   function calculate(event) {
     event.preventDefault()
+    if (!entry || !exit) {
+      setFee(null)
+      setMessage('Enter both times')
+      return
+    }
 
     const [entryHour, entryMinute] = entry.split(':').map(Number)
     const [exitHour, exitMinute] = exit.split(':').map(Number)
